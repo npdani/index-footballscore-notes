@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快速了解 · 足球比分</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f2f4f7;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 24px 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* ---------- 卡片通用 ---------- */
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e7ee;
+            border-radius: 18px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.04);
+            padding: 32px 28px;
+            margin-bottom: 28px;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            text-align: center;
+            padding: 48px 28px 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            color: #0b1c2e;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 680px;
+            margin: 0 auto 24px;
+            color: #3e4f62;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: #eaeef5;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #2c3f53;
+            border: 1px solid #d6dde8;
+        }
+
+        /* ---------- 优势区 ---------- */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 20px;
+            margin: 8px 0 4px;
+        }
+
+        .advantage-item {
+            background: #fafbfd;
+            border-radius: 14px;
+            padding: 20px 18px;
+            border: 1px solid #e8ecf3;
+        }
+
+        .advantage-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #183247;
+        }
+
+        .advantage-item p {
+            font-size: 0.95rem;
+            color: #43566b;
+        }
+
+        /* ---------- 说明区 ---------- */
+        .explain-block {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .explain-block .text-col {
+            flex: 2 1 280px;
+        }
+
+        .explain-block .text-col p {
+            margin-bottom: 14px;
+        }
+
+        .explain-block .highlight-col {
+            flex: 1 1 180px;
+            background: #f6f9fe;
+            border-left: 3px solid #6d8db5;
+            padding: 18px 16px;
+            border-radius: 0 12px 12px 0;
+            color: #1f3449;
+        }
+
+        .explain-block .highlight-col strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        /* ---------- FAQ 摘要 ---------- */
+        .faq-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .faq-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eaeef5;
+        }
+
+        .faq-list li:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #1e3143;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .faq-answer {
+            color: #4a5d72;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- 底部 ---------- */
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 28px;
+            padding: 24px 0 12px;
+            font-size: 0.95rem;
+            color: #54677c;
+        }
+
+        .footer-links a {
+            color: #2e4a69;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .footer-links a:hover {
+            border-bottom-color: #2e4a69;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #73879e;
+            padding: 12px 0 6px;
+            border-top: 1px solid #dee3ec;
+            margin-top: 10px;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 12px;
+            }
+
+            .card {
+                padding: 22px 16px;
+                border-radius: 14px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .explain-block {
+                flex-direction: column;
+            }
+
+            .explain-block .highlight-col {
+                border-left: none;
+                border-top: 3px solid #6d8db5;
+                border-radius: 12px;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <!-- hero -->
+        <div class="card hero">
+            <div class="tagline">赛场信息 · 一目了然</div>
+            <h1>比分在眼前，思路更清晰</h1>
+            <p>无论是清晨醒来想确认昨夜赛果，还是午后快速浏览当天焦点战，<a href="https://index-footballscore.com" style="color:#1d4b6e; font-weight:500; text-decoration:underline;">足球比分</a>提供简洁、稳定的实时数据。省去复杂跳转，专注比赛本身。</p>
+        </div>
+
+        <!-- 优势区 -->
+        <div class="card">
+            <h2 style="font-weight:600; font-size:1.3rem; margin-bottom:20px; color:#112233;">为什么越来越多球迷用这个站点</h2>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <h3>⚡ 轻量直达</h3>
+                    <p>打开即见核心比分，没有冗余广告或弹窗。页面结构干净，加载流畅。</p>
+                </div>
+                <div class="advantage-item">
+                    <h3>📋 赛程覆盖</h3>
+                    <p>主流联赛、杯赛及洲际赛事实时更新，方便追踪重点关注场次。</p>
+                </div>
+                <div class="advantage-item">
+                    <h3>🔍 快速定位</h3>
+                    <p>按日期、联赛或球队筛选，减少信息过载，帮你更快找到目标比赛。</p>
+                </div>
+                <div class="advantage-item">
+                    <h3>📱 适配移动</h3>
+                    <p>手机浏览器体验良好，路上、通勤时也能随时刷一眼即时动态。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 说明区：使用场景 + 提示 -->
+        <div class="card">
+            <div class="explain-block">
+                <div class="text-col">
+                    <h2 style="font-size:1.25rem; font-weight:600; margin-bottom:12px; color:#112233;">实际使用场景</h2>
+                    <p>很多朋友习惯在比赛日打开 <a href="https://index-footballscore.com" style="color:#1d4b6e; font-weight:500; text-decoration:underline;">足球比分</a> 快速浏览已结束场次的最终结果。也有用户会在中场休息时刷新页面，了解其他场次进球变化。</p>
+                    <p>如果你是数据分析爱好者，也可以在此基础上整理比分趋势，辅助自己的观赛笔记。网站不需要注册或登录，降低了使用门槛。</p>
+                </div>
+                <div class="highlight-col">
+                    <strong>💡 一点提醒</strong>
+                    比分数据来源于公开赛事信息，请以官方最终记录为准。建议结合多方来源核实关键场次。
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="card">
+            <h2 style="font-size:1.2rem; font-weight:600; margin-bottom:14px; color:#112233;">常见疑问 · 简短回答</h2>
+            <ul class="faq-list">
+                <li>
+                    <span class="faq-question">包含哪些联赛？</span>
+                    <span class="faq-answer">主要覆盖欧洲五大联赛、欧冠、欧联以及亚洲、南美部分主流赛事，范围持续调整。</span>
+                </li>
+                <li>
+                    <span class="faq-question">更新频率如何？</span>
+                    <span class="faq-answer">比赛进行中通常每分钟刷新，非实时秒级，适合关注阶段变化而非每一秒触球。</span>
+                </li>
+                <li>
+                    <span class="faq-question">需要安装 app 吗？</span>
+                    <span class="faq-answer">不需要。直接通过浏览器使用即可，页面为移动端做过适配，可以添加到主屏幕方便调用。</span>
+                </li>
+                <li>
+                    <span class="faq-question">历史比分能查吗？</span>
+                    <span class="faq-answer">一般保留近期比赛，深度历史数据建议配合专业数据库使用。</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 底部链接 -->
+        <div class="footer-links">
+            <span>数据参考：<a href="https://index-footballscore.com">足球比分</a></span>
+            <span>·</span>
+            <span>反馈建议</span>
+            <span>·</span>
+            <span>常见问题</span>
+        </div>
+        <div class="footer-note">
+            提供简洁直观的足球比分信息服务 · 仅作个人参考
+        </div>
+    </div>
+</body>
+</html>
