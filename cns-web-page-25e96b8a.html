@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中彩网 · 彩市导航与信息平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f3f5f8;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 杂志式 hero */
+        .hero {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.8rem 2.5rem 2.2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 8px 24px rgba(0,20,40,0.04);
+            border: 1px solid #e9edf2;
+            margin-bottom: 2.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, #dce6f0 0%, transparent 70%);
+            opacity: 0.3;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .hero h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            background: #eef2f6;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            color: #2c3e50;
+            border: 1px solid #dde3ea;
+        }
+        .hero p {
+            margin-top: 1.2rem;
+            max-width: 80%;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+        .hero .meta-tag {
+            margin-top: 1.5rem;
+            display: inline-block;
+            background: #eef2f6;
+            border-radius: 40px;
+            padding: 0.3rem 1.2rem;
+            font-size: 0.85rem;
+            border: 1px solid #dde3ea;
+            color: #1e3a5f;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 2rem 2.2rem;
+            border: 1px solid #e9edf2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            margin-bottom: 1.8rem;
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+        }
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #0f172a;
+            letter-spacing: -0.01em;
+        }
+        .card h2 i {
+            font-style: normal;
+            margin-right: 0.4rem;
+        }
+        .card p {
+            margin-bottom: 0.9rem;
+        }
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 背景说明卡片（特殊顶部线） */
+        .bg-card {
+            border-left: 4px solid #b6c8da;
+        }
+        .bg-card h2 {
+            display: flex;
+            align-items: center;
+        }
+        .bg-card h2 span {
+            background: #eef2f6;
+            padding: 0 0.7rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 400;
+            margin-left: 0.8rem;
+            color: #2c3e50;
+        }
+
+        /* 特色列表（杂志点） */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem 2rem;
+            margin-top: 0.8rem;
+        }
+        .feature-item {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+        .feature-marker {
+            background: #e9edf2;
+            width: 22px;
+            height: 22px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #1e3a5f;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+        .feature-item p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* 页尾 */
+        .footer-note {
+            margin-top: 2.8rem;
+            padding: 1.8rem 2rem;
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #e9edf2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-note p {
+            color: #475569;
+            font-size: 0.95rem;
+            margin: 0.2rem 0;
+        }
+        .footer-note a {
+            color: #1e3a5f;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+        .footer-note a:hover {
+            border-bottom-color: #1e3a5f;
+        }
+        .footer-tag {
+            display: inline-block;
+            background: #eef2f6;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            border: 1px solid #dde3ea;
+            color: #1e3a5f;
+        }
+
+        /* FAQ 摘要 (紧凑) */
+        .faq-mini {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+        }
+        .faq-mini span {
+            background: #f3f5f8;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid #e4e9ef;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            body { padding: 1.2rem 1rem; }
+            .hero { padding: 2rem 1.5rem; }
+            .hero p { max-width: 100%; }
+            .hero h1 { font-size: 1.8rem; }
+            .card { padding: 1.6rem 1.2rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .footer-note { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 small { display: block; margin-top: 0.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 首页横幅 hero -->
+    <div class="hero">
+        <h1>
+            中彩网
+            <small>彩市信息 · 导航</small>
+        </h1>
+        <p>
+            一个帮助彩民与关注者快速识别彩票相关资讯、公告及站点动态的聚合平台。无需复杂操作，打开页面即可了解近期彩市要点。
+        </p>
+        <div class="meta-tag">📋 平台定位 · 信息窗</div>
+    </div>
+
+    <!-- 背景说明（杂志风格） -->
+    <div class="card bg-card">
+        <h2>
+            📌 为什么需要这样一个站点
+            <span>背景</span>
+        </h2>
+        <p>
+            互联网上的彩票信息分散、时效不一，普通用户往往需要从多个渠道拼凑资讯。 
+            <a href="https://cns-web-zhcw.com" style="color:#1e3a5f; text-decoration: underline; text-underline-offset: 3px;">中彩网</a> 
+            尝试扮演一个轻量的信息锚点——它不制造内容，而是整合指向性信息，让访客能更快判断哪些链接、公告或动态值得留意。尤其适合那些希望节约信息筛选时间的日常关注者。
+        </p>
+        <p>
+            从「想知道今天有什么彩市消息」到「确认某条通知的出处」，这一站式索引思路降低了信息迷雾带来的困惑。
+        </p>
+    </div>
+
+    <!-- 三段自然介绍 + 特点组合 -->
+    <div class="card">
+        <h2>🔍 网站用途速览</h2>
+        <p>
+            对于首次接触的访客，最直接的问题往往是：“这个网站能帮我做什么？” 答案并不复杂——它是一扇窗。通过清晰归类，展示彩票相关的背景说明、政策提示、重要通知以及常见问题摘要，省去自行搜索的麻烦。
+        </p>
+        <p>
+            同时，站点提供指向权威公告的快捷路径，所有链接均经过人工校验，确保指向稳定、内容相关。无论你是偶尔关注还是定期浏览，都能在这里获得结构化的信息入口。
+        </p>
+        <div style="margin-top: 1.2rem;">
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-marker">①</div>
+                    <p><strong>信息来源可溯</strong> —— 每条资讯均标注原始出处或公告编号，便于交叉核实。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-marker">②</div>
+                    <p><strong>界面克制</strong> —— 无弹窗、无诱导点击，以阅读效率优先。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-marker">③</div>
+                    <p><strong>聚焦国内彩市</strong> —— 涵盖主要彩种相关动态，不涉及境外博彩内容。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-marker">④</div>
+                    <p><strong>持续维护</strong> —— 运营团队定期清理失效链接，更新公告类信息。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 场景 + FAQ 摘要（融合段） -->
+    <div class="card">
+        <h2>📖 适合哪些场景？</h2>
+        <p>
+            如果你是一位彩店经营者，想快速查看最新的政策提示或休市安排；或者你只是普通购彩者，想了解某个彩种的基本规则与开奖节奏—— 
+            <a href="https://cns-web-zhcw.com" style="color:#1e3a5f; text-decoration: underline; text-underline-offset: 3px;">中彩网</a> 
+            提供的就是这样一个安静的查阅起点。没有注册门槛，无需下载，打开即用。
+        </p>
+        <p>
+            此外，站内还整理了一些高频疑问的概要，例如：开奖信息一般在什么时间更新？如何辨别非官方通知？这些内容以摘要形式呈现，帮助新访客快速建立认知。
+        </p>
+        <div class="faq-mini">
+            <span>❓ 开奖时间</span>
+            <span>❓ 渠道真伪</span>
+            <span>❓ 休市日历</span>
+            <span>❓ 公告存档</span>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示（自然嵌入链接） -->
+    <div class="footer-note">
+        <p>
+            如需进一步查阅完整列表及最新动态，可前往 
+            <a href="https://cns-web-zhcw.com">中彩网</a> 
+            获取更多索引信息。页面内容仅供参考，请以官方公告为准。
+        </p>
+        <span class="footer-tag">信息导航 · 持续更新</span>
+    </div>
+
+    <!-- 极简分隔（保留视觉节奏） -->
+    <div style="text-align: center; color: #94a3b8; font-size: 0.75rem; margin-top: 2rem; letter-spacing: 0.5px;">
+        — 杂志式信息页 · 中彩网 —
+    </div>
+
+</div>
+</body>
+</html>
